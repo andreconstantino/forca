@@ -22,4 +22,18 @@ public class LoginControler {
         }
         return null;    
 }
+    public boolean cadastrar(String login, String senha){
+        Jogador jogador = new Jogador();
+        JogadorDAO jogadorDAO = new JogadorDAO();
+        if(jogadorDAO.obterJogador(login)==null){
+            jogador.setLogin(login);
+            jogador.setSenha(senha);        
+            jogadorDAO.novoJogador(jogador);
+            return true;
+        }else{
+            System.out.println("Usuario já cadastrado");
+            return false;
+        }
+    }
 }
+

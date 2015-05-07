@@ -19,15 +19,15 @@ import javax.persistence.OneToMany;
  *
  * @author Andre
  */
-@Entity
+//@Entity
 public class Turno {
-    @Id
-    @GeneratedValue(strategy = IDENTITY)
+    //@Id
+   // @GeneratedValue(strategy = IDENTITY)
     private int idTurno;
     private int errosCometidos;
     //private List letrasUsadas;
-    @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "loginjogador")
+    //@ManyToOne(fetch = FetchType.EAGER)
+   // @JoinColumn(name = "loginjogador")
     private Jogador jogador;
     private boolean statusVitoria;
 

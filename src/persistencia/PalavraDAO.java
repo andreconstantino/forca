@@ -17,7 +17,7 @@ import model.Palavra;
  * @author Andre
  */
 public class PalavraDAO {
-    public void novaPalavra(Palavra palavra){
+    public void cadastrarPalavra(Palavra palavra){
       EntityManager em=HibernateEntityManagerFactory.getEntityManager();
       try{
           em.getTransaction().begin();
@@ -37,12 +37,12 @@ public class PalavraDAO {
         Palavra palavraEscolhida = null;
         int numeroAleatorio;
         try{
-            Query q = em.createQuery("SELECT object(o)"
-                                    + "FROM palavra as o;"   );
+            Query q = em.createQuery("SELECT object(o) "
+                                    + "FROM Palavra as o"   );
             palavras = q.getResultList();
             Random gerador = new Random();
             numeroAleatorio = gerador.nextInt(palavras.size() + 1);
-            palavraEscolhida = (Palavra) palavras.get(numeroAleatorio);
+            palavraEscolhida = (Palavra) palavras.get(numeroAleatorio-1);
             
         }catch(Exception e){
           e.printStackTrace();

@@ -8,6 +8,7 @@ package apresentacao;
 import controler.LoginControler;
 import javax.swing.JOptionPane;
 import model.Jogador;
+import persistencia.JogadorDAO;
 
 /**
  *
@@ -45,7 +46,6 @@ public class Login extends javax.swing.JFrame {
 
         jLabel1.setText("Senha: ");
 
-        tfSenha.setText("jPasswordField1");
         tfSenha.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 tfSenhaActionPerformed(evt);
@@ -102,12 +102,12 @@ public class Login extends javax.swing.JFrame {
                 .addGap(40, 40, 40)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jlLongin)
-                    .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(tfLogin, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(23, 23, 23)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel1)
                     .addComponent(tfSenha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 51, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btCadastrar)
                     .addComponent(btLogar))
@@ -122,15 +122,26 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_tfSenhaActionPerformed
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
-        // TODO add your handling code h
+        LoginControler lc = new LoginControler();
+        if(lc.cadastrar(tfLogin.getText(),tfSenha.getText())){
+            JOptionPane.showMessageDialog(rootPane, "Usuário Cadastrado com sucesso!");
+            
+        }else{
+            JOptionPane.showMessageDialog(rootPane, "Login já existente, tente outro.... :(");
+            
+        }
     }//GEN-LAST:event_btCadastrarActionPerformed
 
     private void btLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogarActionPerformed
         LoginControler loginControler = new LoginControler();
         
         Jogador jogador = loginControler.logar(tfLogin.getText(), tfSenha.getText());
-        if(jogador == null){
+        if(jogador == null)
             JOptionPane.showMessageDialog(null, "Usuario não cadastrado ou senha invalida");
+        else{
+            TelaJogo tj = new TelaJogo(jogador);
+            tj.setVisible(true);
+            this.dispose();
         }
     }//GEN-LAST:event_btLogarActionPerformed
 
