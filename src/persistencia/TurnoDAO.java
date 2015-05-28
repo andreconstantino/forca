@@ -14,7 +14,7 @@ import model.Turno;
  *
  * @author Andre
  */
-public class TurnoDAO {
+public class TurnoDAO implements ITurnoDAO{
     /**
      *
      * @param turno
@@ -49,4 +49,5 @@ public class TurnoDAO {
           }
         }return turno;
     }
+
 }

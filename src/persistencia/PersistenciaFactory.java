@@ -13,5 +13,13 @@ public class PersistenciaFactory {
     
     public static IJogadorDAO obterJogadorDAO() {
         return new JogadorDAO();
+    }   
+    
+    public static IPalavraDAO obterPalavraDAO(){
+        return new PalavraDAO();        
+    }
+    
+    public static ITurnoDAO obterTurnosDAO(){
+        return new TurnoDAO();
     }
 }

@@ -15,5 +15,5 @@ import model.Turno;
  */
 public interface ITurnoDAO {
     public void novoTurno(Turno turno);
-    public List obterTurno();
+    public List obterTurnos();
 }

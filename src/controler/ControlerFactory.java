@@ -11,7 +11,11 @@ package controler;
  * @author a1320548
  */
 public class ControlerFactory {
-    public static void IControlerJogo controleJogo(){
-        
+    public static IControllerJogo obterControlerJogo(){
+        return new ControlerJogo();
+    }
+    
+    public static ILogin obterLoginJogo(){
+        return new LoginControler();
     }
 }
