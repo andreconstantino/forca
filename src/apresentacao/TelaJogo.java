@@ -5,6 +5,7 @@
  */
 package apresentacao;
 
+import controler.ControlerFactory;
 import controler.ControlerJogo;
 import controler.IControllerJogo;
 import javax.swing.JOptionPane;
@@ -32,7 +33,7 @@ public class TelaJogo extends javax.swing.JFrame {
         disporPalavra();
     }
     private void disporPalavra(){
-        IControllerJogo cj = PersistenciaFactory.obterPalavra();//MUDAR NOME DO MÉTODOS CONFORME (PERSISTÊNCIA FACTORY)
+        IControllerJogo cj = ControlerFactory.obterControlerJogo();
         palavra=cj.obterPalavra();
         lbDica.setText(palavra.getDica());
         int tamanho = palavra.getPalavra().length();

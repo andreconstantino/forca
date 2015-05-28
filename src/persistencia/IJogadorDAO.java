@@ -12,6 +12,6 @@ import model.Jogador;
  * @author Andre
  */
 public interface IJogadorDAO {
-    public void novoJogador(Jogador jogador);
-    public Jogador obterJogador(String login);
+    public abstract void novoJogador(Jogador jogador);
+    public abstract Jogador obterJogador(String login);
 }

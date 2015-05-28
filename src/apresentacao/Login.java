@@ -5,6 +5,7 @@
  */
 package apresentacao;
 
+import controler.ControlerFactory;
 import controler.ILogin;
 import controler.LoginControler;
 import javax.swing.JOptionPane;
@@ -123,7 +124,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_tfSenhaActionPerformed
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
-        ILogin lc = new Login Controler();
+        ILogin lc = ControlerFactory.obterLoginJogo();
         if(lc.cadastrar(tfLogin.getText(),tfSenha.getText())){
             JOptionPane.showMessageDialog(rootPane, "Usuário Cadastrado com sucesso!");
             
