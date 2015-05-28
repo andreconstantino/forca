@@ -15,6 +15,10 @@ import model.Turno;
  * @author Andre
  */
 public class TurnoDAO {
+    /**
+     *
+     * @param turno
+     */
     public void novoTurno(Turno turno){
       EntityManager em=HibernateEntityManagerFactory.getEntityManager();
       try{
