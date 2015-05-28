@@ -16,7 +16,7 @@ import model.Palavra;
  *
  * @author Andre
  */
-public class PalavraDAO {
+public class PalavraDAO implements IPalavraDAO {
     
     public void cadastrarPalavra(Palavra palavra){
       EntityManager em=HibernateEntityManagerFactory.getEntityManager();
