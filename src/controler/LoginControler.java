@@ -6,7 +6,8 @@
 package controler;
 
 import model.Jogador;
-import persistencia.JogadorDAO;
+import persistencia.IJogadorDAO;
+import persistencia.PersistenciaFactory;
 
 /**
  *
@@ -14,7 +15,7 @@ import persistencia.JogadorDAO;
  */
 public class LoginControler {
     public Jogador logar(String login, String senha){
-        JogadorDAO jogadorDAO = new JogadorDAO();
+        IJogadorDAO jogadorDAO = PersistenciaFactory.obterJogadorDAO();
         Jogador jogador = null;
         jogador = jogadorDAO.obterJogador(login);
         if(senha.equals(jogador.getSenha())){
@@ -24,7 +25,7 @@ public class LoginControler {
 }
     public boolean cadastrar(String login, String senha){
         Jogador jogador = new Jogador();
-        JogadorDAO jogadorDAO = new JogadorDAO();
+        IJogadorDAO jogadorDAO =  PersistenciaFactory.obterJogadorDAO();
         if(jogadorDAO.obterJogador(login)==null){
             jogador.setLogin(login);
             jogador.setSenha(senha);        

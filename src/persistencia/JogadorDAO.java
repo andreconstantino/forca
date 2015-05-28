@@ -15,7 +15,7 @@ import model.Turno;
  *
  * @author Andre
  */
-public class JogadorDAO {
+public class JogadorDAO implements IJogadorDAO {
     public void novoJogador(Jogador jogador){
       EntityManager em=HibernateEntityManagerFactory.getEntityManager();
       try{
