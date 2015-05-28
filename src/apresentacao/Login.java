@@ -5,6 +5,7 @@
  */
 package apresentacao;
 
+import controler.ILogin;
 import controler.LoginControler;
 import javax.swing.JOptionPane;
 import model.Jogador;
@@ -122,7 +123,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_tfSenhaActionPerformed
 
     private void btCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btCadastrarActionPerformed
-        LoginControler lc = new LoginControler();
+        ILogin lc = new Login Controler();
         if(lc.cadastrar(tfLogin.getText(),tfSenha.getText())){
             JOptionPane.showMessageDialog(rootPane, "Usuário Cadastrado com sucesso!");
             
@@ -133,7 +134,7 @@ public class Login extends javax.swing.JFrame {
     }//GEN-LAST:event_btCadastrarActionPerformed
 
     private void btLogarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btLogarActionPerformed
-        LoginControler loginControler = new LoginControler();
+        ILogin loginControler = new LoginControler();
         
         Jogador jogador = loginControler.logar(tfLogin.getText(), tfSenha.getText());
         if(jogador == null)
