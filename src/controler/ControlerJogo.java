@@ -12,7 +12,7 @@ import persistencia.PalavraDAO;
  *
  * @author Andre
  */
-public class ControlerJogo {
+public class ControlerJogo implements IControllerJogo {
     
     public Palavra obterPalavra(){
       PalavraDAO palavraDAO = new PalavraDAO();
