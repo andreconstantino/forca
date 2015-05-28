@@ -13,7 +13,7 @@ import persistencia.PersistenciaFactory;
  *
  * @author Andre
  */
-public class LoginControler {
+public class LoginControler implements ILogin {
     public Jogador logar(String login, String senha){
         IJogadorDAO jogadorDAO = PersistenciaFactory.obterJogadorDAO();
         Jogador jogador = null;
