@@ -16,14 +16,17 @@ public class ConnectionFactory {
     }
     
     public static Connection getConexao(){
-            if(connection == null){
-                    try{
-                        connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/forca", "root","");
-                    } catch (Exception e){
-                        e.printStackTrace();
-                        JOptionPane.showMessageDialog(null,"Erro de conexao ao banco de dados!");
-                    }
+       
+        try{
+            if(connection == null || connection.isClosed()){
+                connection = DriverManager.getConnection("jdbc:mysql://localhost:3306/forca", "root","");
             }
-            return connection;
+            
+        } catch (Exception e){
+            e.printStackTrace();
+            JOptionPane.showMessageDialog(null,"Erro de conexao ao banco de dados!");
+        }
+        
+        return connection;
     }
 }

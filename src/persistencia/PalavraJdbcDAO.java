@@ -21,7 +21,8 @@ public class PalavraJdbcDAO implements IPalavraDAO{
         Connection cnct = null;
         try{
             cnct = ConnectionFactory.getConexao();
-            rset = pst.executeQuery("select * from Palavra");
+            pst = cnct.prepareStatement("select * from Palavra");
+            rset = pst.executeQuery();
             Random gerador = new Random();
             numeroAleatorio = gerador.nextInt(quantidadePalavras());
             int contador = 0;
@@ -30,15 +31,16 @@ public class PalavraJdbcDAO implements IPalavraDAO{
             }
             
             //recuperar os dados da palavra na posicao numeroAleatorio
+            palavraEscolhida = new Palavra();
             palavraEscolhida.setPalavra(rset.getString("palavra"));
             palavraEscolhida.setDica(rset.getString("dica"));
             //obter o jogador
             IJogadorDAO jogadorDAO = new JogadorJDBCDAO();
-            Jogador jogador = jogadorDAO.obterJogador(rset.getString("jogador"));
+            Jogador jogador = jogadorDAO.obterJogador(rset.getString("loginjogador"));
             palavraEscolhida.setAutorPalavra(jogador);
             
         }catch(Exception e){
-            
+            e.printStackTrace();
         }
         
         return palavraEscolhida;
@@ -51,14 +53,15 @@ public class PalavraJdbcDAO implements IPalavraDAO{
         int quantidade = 0;
         try{
             cnct = ConnectionFactory.getConexao();
-            rset = pst.executeQuery("select count(*) as numero from Palavra");
+            pst = cnct.prepareStatement("select count(*) as numero from Palavra");
+            rset = pst.executeQuery();
             if (rset.next()) {
                 quantidade = rset.getInt("numero");
             } else {
                 System.out.println("error: could not get the record counts");
             }
         }catch(Exception e){
-            
+            e.printStackTrace();
         }
         
         return quantidade;

@@ -27,8 +27,8 @@ public class JogadorJDBCDAO implements IJogadorDAO{
         PreparedStatement psmt = null;
         try{
             StringBuffer sql = new StringBuffer();
-            sql.append("insert into Jogador(login,senha)");
-            sql.append("values(?,?)");
+            sql.append("insert into Jogador(login, senha, acertos, erros)");
+            sql.append("values(?,?, 0, 0)");
             psmt = con.prepareStatement(sql.toString());
             
             psmt.setString(1,jogador.getLogin());
@@ -52,7 +52,7 @@ public class JogadorJDBCDAO implements IJogadorDAO{
 
     @Override
     public Jogador obterJogador(String login) {
-        Jogador user = new Jogador();
+        Jogador user = null;
         Connection con = ConnectionFactory.getConexao();
         ResultSet rs = null;
         PreparedStatement psmt = null;
@@ -61,6 +61,7 @@ public class JogadorJDBCDAO implements IJogadorDAO{
             psmt = con.prepareStatement("select * from Jogador where login = '"+login+"'");
             rs = psmt.executeQuery();
             while(rs.next()) { 
+                user = new Jogador();
                 user.setLogin(rs.getString("login"));
                 user.setSenha(rs.getString("senha"));
             }
@@ -71,7 +72,6 @@ public class JogadorJDBCDAO implements IJogadorDAO{
             try {
                 psmt.close();
                 rs.close();
-                con.close();
             } catch (SQLException e) {
                 JOptionPane.showMessageDialog(null, "Não foi possivel realizar a conexão com o banco de dados.");
                 e.printStackTrace();
