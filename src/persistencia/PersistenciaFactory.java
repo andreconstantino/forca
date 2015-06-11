@@ -11,8 +11,11 @@ package persistencia;
  */
 public class PersistenciaFactory {
     
-    public static IJogadorDAO obterJogadorDAO() {
-        return new JogadorDAO();
+    public static IJogadorDAO obterJogadorDAO(boolean useHibernate) {
+        if(useHibernate)
+            return new JogadorDAO();
+        
+        return new JogadorJDBCDAO();
     }   
     
     public static IPalavraDAO obterPalavraDAO(){
