@@ -18,8 +18,10 @@ public class PersistenciaFactory {
         return new JogadorJDBCDAO();
     }   
     
-    public static IPalavraDAO obterPalavraDAO(){
-        return new PalavraDAO();        
+    public static IPalavraDAO obterPalavraDAO(boolean useHibernate){
+        if(useHibernate)
+            return new PalavraDAO();        
+        return new PalavraJdbcDAO();
     }
     
     public static ITurnoDAO obterTurnosDAO(){

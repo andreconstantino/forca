@@ -6,7 +6,9 @@
 package controler;
 
 import model.Palavra;
+import persistencia.IPalavraDAO;
 import persistencia.PalavraDAO;
+import persistencia.PersistenciaFactory;
 
 /**
  *
@@ -15,7 +17,7 @@ import persistencia.PalavraDAO;
 public class ControlerJogo implements IControllerJogo {
     
     public Palavra obterPalavra(){
-      PalavraDAO palavraDAO = new PalavraDAO();
+      IPalavraDAO palavraDAO = PersistenciaFactory.obterPalavraDAO(false);
       return palavraDAO.obterPalavraAleatoria();
       
     }

@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.List;
 import java.util.Random;
+import model.Jogador;
 import model.Palavra;
 
 /**
@@ -32,6 +33,10 @@ public class PalavraJdbcDAO implements IPalavraDAO{
             palavraEscolhida.setPalavra(rset.getString("palavra"));
             palavraEscolhida.setDica(rset.getString("dica"));
             //obter o jogador
+            IJogadorDAO jogadorDAO = new JogadorJDBCDAO();
+            Jogador jogador = jogadorDAO.obterJogador(rset.getString("jogador"));
+            palavraEscolhida.setAutorPalavra(jogador);
+            
         }catch(Exception e){
             
         }

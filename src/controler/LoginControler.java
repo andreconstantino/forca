@@ -15,7 +15,7 @@ import persistencia.PersistenciaFactory;
  */
 public class LoginControler implements ILogin {
     public Jogador logar(String login, String senha){
-        IJogadorDAO jogadorDAO = PersistenciaFactory.obterJogadorDAO(false);
+        IJogadorDAO jogadorDAO = PersistenciaFactory.obterJogadorDAO(true);
         Jogador jogador = null;
         jogador = jogadorDAO.obterJogador(login);
         if(senha.equals(jogador.getSenha())){
@@ -25,7 +25,7 @@ public class LoginControler implements ILogin {
 }
     public boolean cadastrar(String login, String senha){
         Jogador jogador = new Jogador();
-        IJogadorDAO jogadorDAO =  PersistenciaFactory.obterJogadorDAO(false);
+        IJogadorDAO jogadorDAO =  PersistenciaFactory.obterJogadorDAO(true);
         if(jogadorDAO.obterJogador(login)==null){
             jogador.setLogin(login);
             jogador.setSenha(senha);        
